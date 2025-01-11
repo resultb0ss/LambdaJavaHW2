@@ -1,28 +1,26 @@
 public class Main {
     public static void main(String[] args) {
 
+        String[] array = {"Виктор", "Андрей", "Великослав", "Джамаллитдин", "Великобритания", "Франция","Рим"};
 
-        String[] words = {"SkillBox", "UrbanUniversitet", "Yandex"};
+        Expression exp = (a, b) -> a > b ;
+        System.out.println(longestWord(array, exp));
 
-        final int maxLength = 8;
-        final String longestWord = "";
 
-        Expression expression = n -> n.length() > maxLength;
-
-        System.out.println(maxLine(words, expression));
     }
 
-    public static String maxLine(String[] words, Expression exp) {
-        String result = " ";
-        for (String element : words) {
-            if (exp.isEqual(element)) {
-                result += element;
+    public static String longestWord(String[] array, Expression exp) {
+        String result = array[0];
+        for (String element : array) {
+            if (exp.isEqual(element.length(), result.length())) {
+                result = element;
             }
         }
         return result;
     }
+
 }
 
 interface Expression {
-    boolean isEqual(String a);
+    boolean isEqual(int a, int b);
 }
